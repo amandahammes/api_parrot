@@ -27,9 +27,6 @@ export class User {
     password: string
 
     @Column()
-    img: string
-
-    @Column()
     @CreateDateColumn()
     createdAt: Date
 
