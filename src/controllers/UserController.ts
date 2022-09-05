@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { userRepository } from "../repositories/userRepository"
 
 export class UserController {
-	async create(req: Request, res: Response) {
+	static create = async (req: Request, res: Response) => {
 		const { name, email, apartment, password  } = req.body
 
 		try {
@@ -15,5 +15,7 @@ export class UserController {
 			console.log(error)
 			return res.status(500).json({ message: 'Internal Server Error' })
 		}
+
+        return res.status(201).send('Fooooi!')
 	}
 }
