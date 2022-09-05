@@ -1,0 +1,26 @@
+import { User } from './User';
+import { Length } from "class-validator";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+
+@Entity({ name: 'post' })
+export class Post {
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column({ type: "text"})
+    @Length(6,500)
+    content: string
+
+    @Column()
+    @CreateDateColumn()
+    createdAt: Date
+
+    @Column()
+    @UpdateDateColumn()
+    updatedAt: Date
+
+    @ManyToOne(() => User, user => user.posts)
+    @JoinColumn({name: 'user_id'})
+    user: User
+
+}
