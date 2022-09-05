@@ -1,5 +1,4 @@
 import { User } from './User';
-import { length, Length } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: 'post' })
