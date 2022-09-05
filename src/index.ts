@@ -1,9 +1,8 @@
-import express, {Request, Response} from "express"
+import express from "express"
 import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
 import routes from "./routes"
 
-AppDataSource.initialize().then(async () => {
+AppDataSource.initialize().then(() => {
     const app = express()
     app.use(express.json())
 
