@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { postRepository } from "../repositories/postRepository"
 import { Post } from "../entity/Post"
+import { User } from "../entity/User"
 
 export class PostController {
 	static create = async (req: Request, res: Response) => {
@@ -19,7 +20,7 @@ export class PostController {
 	}
     
     static listById = async(req:Request, res: Response) => {
-        const posts = await postRepository.find({select:["id", "content"]})
+        const posts = await postRepository.find({select:["idPost", "content"]})
 
         return res.send(posts)
     }
@@ -55,7 +56,24 @@ export class PostController {
         }
 
         return res.status(204).send("Post modified")
+    }
 
+    static listAll = async (req:Request, res: Response) => {
+        const id: any = req.params.idPost
+        const { content } = req.body
+        let post: Post
+
+        try {
+            post = await postRepository.findOneOrFail({where: id})
+        } catch (error) {
+            return res.status(404).send("Post not found")
+        }
+
+        if(content){
+            post.content = content
+        }
+
+        return res.status(204).send("Post modified")
     }
     
 }

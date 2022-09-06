@@ -6,9 +6,7 @@ const routes = Router()
 //create new user
 routes.post("/", UserController.create)
 //editar usuário
-routes.put("/:id", UserController.edit)
-//deletar usuário
-
+routes.put("/:id([0-9]+)", UserController.edit)
 //listar por id
 routes.get("/:id", UserController.listId)
 //listar todos

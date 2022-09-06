@@ -1,14 +1,15 @@
 import { userRepository } from './../repositories/userRepository';
 import { User } from './../entity/User';
 import { Request, Response } from "express"
+import { validate } from 'class-validator';
 
 export class UserController {
     
 	static create = async (req: Request, res: Response) => {
-		const { name, email, apartment, password  } = req.body
+		const { name, email, apartment, role, password  } = req.body
 
 		try {
-			const newUser = userRepository.create({ name, email, apartment, password })
+			const newUser = userRepository.create({ name, email, apartment, password, role })
 
 			await userRepository.save(newUser)
 
@@ -20,14 +21,14 @@ export class UserController {
 	}
 
 	static edit = async (req: Request, res: Response) => {
-		const id: number = parseInt(req.params.iduser, 10)
-		const { name, email, apartment } = req.body
-		let user: User
+		const { name, apartment, email, role } = req.body
+		const idUser : number = parseInt(req.params.idUser)
+		let user : User
 
 		try {
-			user = await userRepository.findOneByOrFail({id})
+			user = await userRepository.findOneByOrFail({ idUser: Number(idUser) })
 		} catch (error) {
-			return res.status(404).send("User not found")
+				return res.status(404).send("User not found")
 		}
 
 		if(name) {
@@ -35,20 +36,38 @@ export class UserController {
 		}
 		
 		if(email) {
-			user.email = email
-		}
-
+				user.email = email
+			}
+			
 		if(apartment) {
 			user.apartment = apartment
 		}
-	}	
+
+		if(role) {
+			user.role = role
+		}
+		
+		const errors = await validate(user)
+
+        if (errors.length > 0) {
+            return res.status(400).send(errors)
+        }
+
+        try {
+            await userRepository.save(user)    
+        } catch (error) {
+            return res.status(409).send("Email already in use")
+        }
+
+        return res.status(201).send("edited user")
+    }	
 
 	static listId = async (req: Request, res: Response) => {
-        const id: number = parseInt(req.params.iduser, 10)
+        const idUser = req.params.idUser
         let user: User
 
         try {
-            user = await userRepository.findOneByOrFail({id})
+            user = await userRepository.findOneByOrFail({ idUser: Number(idUser) })
         } catch (error) {
             return res.status(404).send("User not found")            
         }
@@ -58,25 +77,9 @@ export class UserController {
 
 	static listAll = async (req: Request, res: Response) => {      
         const users = await userRepository.find({
-            select: ["name", "email", "apartment" ]
+            select: [ "idUser", "name", "email", "apartment" ]
         })
 
         return res.send(users)
     }	
 }
-
-
-// static del = async (req:Request, res: Response) => {
-	// 	const id: any = req.params.id
-	// 	let user: User
-
-	// 	try {
-	// 		user = await userRepository.findOneOrFail(id)
-	// 	} catch (error) {
-	// 		return res.status(404).send("User not found.")
-	// 	}
-		
-	// 	userRepository.delete(id)
-
-	// 	return res.status(204).send()
-	// }

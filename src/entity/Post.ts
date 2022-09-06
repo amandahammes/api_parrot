@@ -4,7 +4,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDa
 @Entity({ name: 'post' })
 export class Post {
     @PrimaryGeneratedColumn()
-    id: number
+    idPost: number
 
     @Column('varchar', {length: 300})
     content: string
@@ -18,7 +18,7 @@ export class Post {
     updatedAt: Date
 
     @ManyToOne(() => User, user => user.posts)
-    @JoinColumn({name: 'user_id'})
+    @JoinColumn({name: 'user_idUser'})
     user: User
 
 }
