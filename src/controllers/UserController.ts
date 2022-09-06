@@ -2,6 +2,7 @@ import { userRepository } from './../repositories/userRepository';
 import { User } from './../entity/User';
 import { Request, Response } from "express"
 import { validate } from 'class-validator';
+import { Any } from 'typeorm';
 
 export class UserController {
     
@@ -28,7 +29,7 @@ export class UserController {
 		try {
 			user = await userRepository.findOneByOrFail({ idUser: Number(idUser) })
 		} catch (error) {
-				return res.status(404).send("User not found")
+			return res.status(404).send("User not found")
 		}
 
 		if(name) {
@@ -62,18 +63,33 @@ export class UserController {
         return res.status(201).send("edited user")
     }	
 
-	static listId = async (req: Request, res: Response) => {
-        const idUser = req.params.idUser
+	async listId (req: Request, res: Response) {
+        let idUser: any = req.params.idUser
         let user: User
 
         try {
-            user = await userRepository.findOneByOrFail({ idUser: Number(idUser) })
+            user = await userRepository.findOneOrFail({ where: { idUser: Number(idUser) } })
         } catch (error) {
             return res.status(404).send("User not found")            
         }
        
         return res.send(user)
     }
+
+	async getOneById(req: Request, res: Response) {
+        const idUser: number = parseInt(req.params.iduser, 10)
+
+        let user: User
+
+        try {
+            user = await userRepository.findOneOrFail({ where: { idUser: Number(idUser) } })
+        } catch (error) {
+            return res.status(404).send("User not found")            
+        }
+       
+        return res.send(user)
+    }
+
 
 	static listAll = async (req: Request, res: Response) => {      
         const users = await userRepository.find({

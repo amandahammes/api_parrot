@@ -8,7 +8,7 @@ routes.post("/", UserController.create)
 //editar usuário
 routes.put("/:id([0-9]+)", UserController.edit)
 //listar por id
-routes.get("/:id", UserController.listId)
+routes.get("/:id", new UserController().listId)
 //listar todos
 routes.get("/", UserController.listAll)
 
