@@ -12,7 +12,6 @@ routes.post("/", UserController.createUser)
 //editar usuário
 routes.put("/:id", UserController.editUser)
 //listar por id
-routes.get("/:id", UserController.userById)
 //listar todos
 routes.get("/",[checkJwt], UserController.allUser)
 //delete user
