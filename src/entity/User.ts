@@ -1,8 +1,10 @@
- import { Post } from './Post';
-import { Entity,  PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, Unique } from "typeorm"
+import { Post } from './Post';
+import { Entity,  PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, Unique, JoinTable } from "typeorm"
 import { Length, IsNotEmpty, IsEmail, IsEmpty } from "class-validator"
 
-@Entity({ name: 'user' })
+import * as bcrypt from 'bcryptjs'
+
+@Entity('user')
 @Unique(['email'])
 export class User {
 
@@ -41,5 +43,15 @@ export class User {
 
     @OneToMany(() => Post, (post) => post.user)
     posts: Post[]
+
+    // criptar a senha
+	hashPassword() {
+		this.password = bcrypt.hashSync(this.password, 8)
+}
+
+    // identificar se a senha foi criptada
+    checkPasswordValid(unencryptedPassword: string) {
+		return bcrypt.compareSync(unencryptedPassword, this.password)
+}
 
 }
