@@ -8,10 +8,10 @@ export class UserSeeder implements Seeder {
         const userRepository = dataSource.getRepository(User)
         
         const userData = {
-            name: 'Gama XP',
-            email:'gama@gama.com',
+            name: 'admin',
+            email:'admin@admin.com',
             apartment: '01',
-            password: await bcrypt.hash('teste', 10),
+            password: await bcrypt.hash('admin', 10),
             role: 'ADMIN'
         }
 
