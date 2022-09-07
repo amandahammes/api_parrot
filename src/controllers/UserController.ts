@@ -1,16 +1,27 @@
+import { PostController } from './PostController';
+import { postRepository } from './../repositories/postRepository';
 import { userRepository } from './../repositories/userRepository';
 import { User } from './../entity/User';
+import { Post } from '../entity/Post';
 import { Request, Response } from "express"
 import { validate } from 'class-validator';
 
+
+
 export class UserController {
     
-	static create = async (req: Request, res: Response) => {
+	static createUser = async (req: Request, res: Response) => {
 		const { name, email, apartment, role, password  } = req.body
 
 		try {
 			const newUser = userRepository.create({ name, email, apartment, password, role })
 
+			const errors = await validate(newUser)
+        if(errors.length > 0) {
+          return res.status(400).send(errors)
+        }
+
+			newUser.hashPassword()
 			await userRepository.save(newUser)
 
 			return res.status(201).json(newUser)
@@ -20,13 +31,14 @@ export class UserController {
 		}
 	}
 
-	static edit = async (req: Request, res: Response) => {
+
+	static editUser = async (req: Request, res: Response) => {
 		const { name, apartment, email, role } = req.body
-		const idUser : number = parseInt(req.params.idUser)
+		const idUser : number = parseInt(req.params.id)
 		let user : User
 
 		try {
-			user = await userRepository.findOneByOrFail({ idUser: Number(idUser) })
+			user = await userRepository.findOneOrFail({where: {idUser: Number(idUser)}})
 		} catch (error) {
 				return res.status(404).send("User not found")
 		}
@@ -62,24 +74,46 @@ export class UserController {
         return res.status(201).send("edited user")
     }	
 
-	static listId = async (req: Request, res: Response) => {
+	static userById = async (req: Request, res: Response) => {
         const idUser = req.params.idUser
+				// console.log(id)
         let user: User
 
         try {
-            user = await userRepository.findOneByOrFail({ idUser: Number(idUser) })
-        } catch (error) {
+            user = await userRepository.findOneOrFail({where: {idUser: Number(idUser)}})
+        } catch (error: any) {
             return res.status(404).send("User not found")            
         }
-       
+      
         return res.send(user)
     }
 
-	static listAll = async (req: Request, res: Response) => {      
+	static allUser = async (req: Request, res: Response) => {      
         const users = await userRepository.find({
             select: [ "idUser", "name", "email", "apartment" ]
         })
 
         return res.send(users)
     }	
+
+		static deleteUser = async (req: Request, res: Response) => {
+			const idUser = req.params.id
+
+			
+			let user: User
+
+			try {
+				user = await userRepository.findOneOrFail({where: {idUser: Number(idUser)}})
+			} catch (error: any) {
+				return res.status(404).send('User not found')
+			}
+
+			userRepository.delete(idUser)
+
+			return res.status(204).send()
+	}
+
+
+	
+
 }
