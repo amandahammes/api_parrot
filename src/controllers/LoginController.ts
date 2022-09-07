@@ -5,9 +5,6 @@ import { User } from '../entity/User'
 import config from '../config/config'
 import { validate } from 'class-validator';
 
-
-
-
 class AuthController {
   static login =async (req: Request, res: Response) => {
     let { email , password } = req.body
@@ -31,7 +28,7 @@ class AuthController {
   
     const { password:_ , ...loggedUser } = user
     const token = jwt.sign(
-      {user: user.id},
+      {user: user.idUser},
       config.jwtSecret,
       { expiresIn: "1h"})
 

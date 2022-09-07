@@ -74,40 +74,42 @@ export class UserController {
 
         return res.status(201).send("edited user")
     }	
+	static userById = async (req: Request, res: Response) => {
+        const idUser = req.params.idUser
+                // console.log(id)
+        let user: User
 
-
-        return res.status(404).send("User not found")            
+        try {
+            user = await userRepository.findOneOrFail({where: {idUser: Number(idUser)}})
+        } catch (error: any) {
+            return res.status(404).send("User not found")
         }
-      
+
         return res.send(user)
     }
 
-
+    static allUser = async (req: Request, res: Response) => {
         const users = await userRepository.find({
             select: [ "idUser", "name", "email", "apartment" ]
         })
 
         return res.send(users)
-    }	
+    }
 
-		static deleteUser = async (req: Request, res: Response) => {
-			const idUser = req.params.id
-
-			
-			let user: User
-
-			try {
-				user = await userRepository.findOneOrFail({where: {idUser: Number(idUser)}})
-			} catch (error: any) {
-				return res.status(404).send('User not found')
-			}
-
-			userRepository.delete(idUser)
-
-			return res.status(204).send()
-	}
+        static deleteUser = async (req: Request, res: Response) => {
+            const idUser = req.params.id
 
 
-	
+            let user: User
 
+            try {
+                user = await userRepository.findOneOrFail({where: {idUser: Number(idUser)}})
+            } catch (error: any) {
+                return res.status(404).send('User not found')
+            }
+
+            userRepository.delete(idUser)
+
+            return res.status(204).send()
+    }
 }

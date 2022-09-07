@@ -14,10 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-<<<<<<< HEAD
-=======
     "@types/bcrypt": "^5.0.0",
->>>>>>> 0953ecfb0f827c71acfcaeacfa442ddb8a329ea7
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.9",
