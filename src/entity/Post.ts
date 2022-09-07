@@ -1,10 +1,10 @@
 import { User } from './User';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinTable, ManyToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('posts' )
+@Entity({ name: 'post' })
 export class Post {
     @PrimaryGeneratedColumn()
-    id: number
+    idPost: number
 
     @Column('varchar', {length: 300})
     content: string
@@ -17,7 +17,8 @@ export class Post {
     @UpdateDateColumn()
     updatedAt: Date
 
-    @ManyToOne(() => User, (user) => user.posts)
+    @ManyToOne(() => User, user => user.posts)
     @JoinColumn({name: 'user_idUser'})
     user: User
+
 }

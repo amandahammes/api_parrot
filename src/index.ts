@@ -8,8 +8,8 @@ AppDataSource.initialize().then(() => {
 
     app.use(routes)
 
-    return app.listen(3033, () => {
-        console.log("Server started on 3033.")
+    return app.listen(3440, () => {
+        console.log("Server started on 3440.")
     })
 })
 .catch((error) => console.log(error))
