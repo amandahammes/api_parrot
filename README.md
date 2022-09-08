@@ -24,7 +24,18 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 
 ### 🔧 Instalação
     - Após clonar o repositório, acesse via terminal a pasta ./src/ executar o comando "npm install" para instalar todas as dependências do projeto.
-    - Necessário alterar credenciais do banco de dados no arquivo .env
+
+    - Criar um arquivo na raiz do projeto com o nome ".env", com o seguinte conteúdo (substitua pelas suas informações sem as aspas):</br>
+
+        DB_HOST="local onde está rodando o servidor, para servidor local usar localhost"
+        DB_PORT="3443"
+        DB_USER="nome do seu usuario no mysql"
+        DB_PASS="senha do seu usuario no mysql"
+        DB_NAME="parrot"
+  
+        JWT_PASS="criar senha com caracteres validos"
+
+    
     - Criar banco de dados dentro do MySql com o seguinte nome: parrot e deixar o banco vazio.
     - No terminal, rodar os comandos, todos sem aspas:
     - "npm run migration:generate" e em seguida "npm run migration:run" para gerar as tabelas com as migrations;
@@ -40,4 +51,6 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 
 *⌨️ **Amanda Hammes** - [Amanda Hammes](https://github.com/amandahammes/)<br>
 *⌨️ **Daniel Junior** - [Daniel Junior](https://github.com/DanielAntunes-dev/)<br>
+
+
 
