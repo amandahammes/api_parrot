@@ -15,17 +15,15 @@ routes.get("/login/", new LoginController().getProfile)
 //editar usuário
 routes.put("/user/:idUser",loginMiddleware, UserController.editUser)
 //listar todos usuários
-routes.get("/user/", UserController.listAll)
+routes.get("/user/", loginMiddleware, UserController.listAll)
 ////create new post
-routes.post("/post/", loginMiddleware, PostController.create)
+routes.post("/post/", loginMiddleware, PostController.createPost)
 //edit post
-routes.put("/post/:id([0-9]+)", PostController.edit)
-//delete post
-// routes.delete("/post/:id([0-9]+)", PostController.del)
+// routes.put("/post/:idPost", loginMiddleware, PostController.editPost)
 //get all posts
-routes.get("/post/getall", new PostController().listAll)
+routes.get("/post/getall/", new PostController().listAll)
 //get all posts by id
-// routes.get("/post/user", loginMiddleware, PostController.listById)
+routes.get("/post/user/", loginMiddleware, new PostController().listById)
 
 
 export default routes
