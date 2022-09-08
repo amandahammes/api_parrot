@@ -1,13 +1,9 @@
-import { userRepository } from './../repositories/userRepository';
 import { Post } from './../entity/Post';
 import { Request, Response } from "express"
 import { postRepository } from "../repositories/postRepository"
-import { loginMiddleware } from '../middlewares/loginMiddleware';
-import { User } from "../entity/User"
-import { trace } from 'console';
 
 export class PostController {
-	static create = async (req: Request, res: Response) => {
+	static createPost = async (req: Request, res: Response) => {
 		const { content } = req.body
 
 		try {
@@ -21,46 +17,34 @@ export class PostController {
 			return res.status(500).json({ message: 'Internal Server Error' })
 		}
 	}
-    
-    // static listById = async(req:Request, res: Response) => {
-    //     const idUser = req.user.idUser
-    //     const usuario = await userRepository.findOneBy({idUser})
-    //     console.log(usuario, idUser)
-    //     if(!usuario){
-    //         //pesquisar numero do status
-    //         return res.status(404).json("usuario não encotrado")
-    //     }
-    //     // const user_idUser = idUser
-        
 
+    // static editPost = async (req:Request, res: Response) => {
+    //     const id: any = req.params.idPost
+    //     const { content } = req.body
+    //     let post: Post
+        
     //     try {
-    //         const post = await userRepository.findOne({where: idUser: parseInt(idUser)},{
-    //             relations: {posts: true,},)
-                        
-    //         return res.status(200).send(post)
+    //         post = await postRepository.findOneOrFail({where: id})
     //     } catch (error) {
-    //         return res.status(404).json("usuario não encotrado")
+    //         return res.status(404).send("Post not found")
     //     }
-    
         
+    //     if(content){
+    //         post.content = content
+    //     }
+        
+    //     return res.status(204).send("Post modified")
     // }
-    
-    static edit = async (req:Request, res: Response) => {
-        const id: any = req.params.id
-        const { content } = req.body
-        let post: Post
-        
-        try {
-            post = await postRepository.findOneOrFail({where: id})
-        } catch (error) {
-            return res.status(404).send("Post not found")
-        }
-        
-        if(content){
-            post.content = content
-        }
-        
-        return res.status(204).send("Post modified")
+
+    async listById (req: Request, res: Response){
+        const idAtual = req.user.idUser;
+        const userPosts = await postRepository.find({
+            where:{
+                    user:{
+                            idUser:idAtual
+                    }
+        }});
+        return res.json(userPosts)
     }
     
     async listAll (req: Request, res: Response) {
@@ -75,8 +59,9 @@ export class PostController {
                     email: true,
                     apartment: true,
                 }
-            }
-        })
+    }})
+
+        return res.status(200).json(posts)
     }
         
 }
