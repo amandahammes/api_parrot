@@ -77,34 +77,6 @@ export class UserController {
         return res.status(201).send("edited user")
     }
 
-	// async listId (req: Request, res: Response) {
-    //     let idUser: any = req.params.idUser
-    //     let user: User
-
-    //     try {
-    //         user = await userRepository.findOneOrFail({ where: { idUser: Number(idUser) } })
-    //     } catch (error) {
-    //         return res.status(404).send("User not found")            
-    //     }
-       
-    //     return res.send(user)
-    // }
-
-	// async getOneById(req: Request, res: Response) {
-    //     const idUser: number = parseInt(req.params.iduser, 10)
-
-    //     let user: User
-
-    //     try {
-    //         user = await userRepository.findOneOrFail({ where: { idUser: Number(idUser) } })
-    //     } catch (error) {
-    //         return res.status(404).send("User not found")            
-    //     }
-       
-    //     return res.send(user)
-    // }
-
-
 	static listAll = async (req: Request, res: Response) => {      
         const users = await userRepository.find({
             select: [ "idUser", "name", "email", "apartment" ]
