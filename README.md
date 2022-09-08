@@ -34,7 +34,7 @@ De que coisas você precisa para instalar o software e como instalá-lo?
     
 ## 📦 Documentação da API
         
- **API PARROT NO POSTMAN ** - [API Parrot no Postman]([https://documenter.getpostman.com/view/21642567/VVBUySTW/])
+ **API PARROT NO POSTMAN ** - [API Parrot no Postman]([https://documenter.getpostman.com/view/21642567/VVBUySTW)
         
 ## ✒️ Autores deste projeto de BackEnd<br>
 
