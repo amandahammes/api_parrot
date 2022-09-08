@@ -18,24 +18,6 @@ export class PostController {
 		}
 	}
 
-    // static editPost = async (req:Request, res: Response) => {
-    //     const id: any = req.params.idPost
-    //     const { content } = req.body
-    //     let post: Post
-        
-    //     try {
-    //         post = await postRepository.findOneOrFail({where: id})
-    //     } catch (error) {
-    //         return res.status(404).send("Post not found")
-    //     }
-        
-    //     if(content){
-    //         post.content = content
-    //     }
-        
-    //     return res.status(204).send("Post modified")
-    // }
-
     async listById (req: Request, res: Response){
         const idAtual = req.user.idUser;
         const userPosts = await postRepository.find({

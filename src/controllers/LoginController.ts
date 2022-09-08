@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 export class LoginController {
     async login (req:Request, res:Response){
-        const {email, password} = req.body
+        const { email, password } = req.body
 
         const user = await userRepository.findOneBy({email})
 
@@ -29,7 +29,4 @@ export class LoginController {
         })
     }
 
-    async getProfile (req:Request, res:Response){
-        return res.json(req.user)
-    }
 }
