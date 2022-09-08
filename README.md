@@ -41,12 +41,14 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 
 ## ✒️ Autores
 
-*⌨️ com ❤️ por **Amanda Hammes** - *Node.JS - Documentação* - [Amanda Hammes](https://github.com/amandahammes/)
+*⌨️ com ❤️ por **Amanda Hammes** - *Node.JS - Documentação* - [Amanda Hammes](https://github.com/amandahammes/)<br>
 *⌨️ por **Daniel Junior** - *Node.JS - Documentação* - [Daniel Junior](https://github.com/)<br>
 
 
 ## 🎁 Expressões de gratidão
 
-* Projeto realizado após muito esforço e dedicação, Esperamos que gostem! 📢
-* Com o projeto concluído. Podemos Tomar uma 🍺 não é mesmo **Amanda Hammes**?
+* Projeto realizado após muito esforço e dedicação, Espero que gostem! 📢<br>
+* 
+* Com o projeto concluído. Podemos Tomar uma 🍺 não é mesmo **Amanda Hammes**?<br>
+* 
 * Obrigado [Daniel Obara](https://github.com/DanielObara) Pelos ensinamentos, macetes e principalmente pela paciência em nos ensinar 🤓.
