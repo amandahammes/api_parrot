@@ -35,12 +35,12 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 ## 📦 Documentação da API
 
      
-     [Parrot no Postman](https://documenter.getpostman.com/view/21642567/VVBUySTW)<br>
+        [Parrot no Postman](https://documenter.getpostman.com/view/21642567/VVBUySTW/)<br>
      
 
 
 ## ✒️ Autores deste projeto de BackEnd<br>
 
 *⌨️ **Amanda Hammes** - [Amanda Hammes](https://github.com/amandahammes/)<br>
-*⌨️ **Daniel Junior** - [Daniel Junior](https://github.com/DanielAntunes-dev)<br>
+*⌨️ **Daniel Junior** - [Daniel Junior](https://github.com/DanielAntunes-dev/)<br>
 
