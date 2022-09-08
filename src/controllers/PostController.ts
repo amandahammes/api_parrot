@@ -76,39 +76,7 @@ export class PostController {
                     apartment: true,
                 }
             }
-        })}
-        
-        
-        // static del = async (req:Request, res: Response) => {
-        //     const id: any = req.params.id
-        //     let post: Post
-            
-        //     try {
-        //         post = await postRepository.findOneByOrFail(id)
-        //     } catch (error) {
-        //         return res.status(404).send("User not found.")
-        //     }
-            
-        //     postRepository.delete(id)
-            
-        //     return res.status(204).send()
-        // }
-        // static listAllById = async (req:Request, res: Response) => {
-    //     const idUser: any = req.user.idUser
-    //     let post: Post
-
-    //     // try {
-    //     //    for(idUser == post.user_idUser){}
-    //     //    post = await postRepository.findOneOrFail({where: id})
-    //     // } catch (error) {
-    //     //     return res.status(404).send("Post not found")
-    //     // }
-
-    //     // if(content){
-    //     //     post.content = content
-    //     // }
-
-    //     // return res.status(204).send("Post modified")
-    // }
-
+        })
     }
+        
+}
