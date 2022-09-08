@@ -34,11 +34,13 @@ De que coisas você precisa para instalar o software e como instalá-lo?
     
 ## 📦 Documentação da API
 
-      https://documenter.getpostman.com/view/21642567/VVBUySTW
+     
+     [Parrot no Postman](https://documenter.getpostman.com/view/21642567/VVBUySTW)<br>
+     
 
 
-## ✒️ Autores<br>
+## ✒️ Autores deste projeto de BackEnd<br>
 
-*⌨️ com ❤️ por **Amanda Hammes** - *Node.JS - Documentação* - [Amanda Hammes](https://github.com/amandahammes/)<br>
-*⌨️ por **Daniel Junior** - *Node.JS - Documentação* - [Daniel Junior](https://github.com/)<br>
+*⌨️ **Amanda Hammes** - [Amanda Hammes](https://github.com/amandahammes/)<br>
+*⌨️ **Daniel Junior** - [Daniel Junior](https://github.com/DanielAntunes-dev)<br>
 
